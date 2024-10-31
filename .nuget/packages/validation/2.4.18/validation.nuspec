@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Validation</id>
+    <version>2.4.18</version>
+    <title>Input and runtime validation</title>
+    <authors>Andrew Arnott</authors>
+    <owners>Andrew Arnott</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://raw.githubusercontent.com/AArnott/Validation/69e6a2c4f3/LICENSE.txt</licenseUrl>
+    <projectUrl>http://github.com/aarnott/Validation</projectUrl>
+    <description>Method input validation and runtime checks that report errors or throw exceptions when failures are detected.</description>
+    <tags>InputValidation IntegrityCheck</tags>
+    <repository type="git" url="http://github.com/aarnott/Validation" />
+    <dependencies>
+      <group targetFramework=".NETFramework2.0" />
+      <group targetFramework=".NETFramework4.0" />
+      <group targetFramework=".NETFramework4.5" />
+      <group targetFramework=".NETStandard1.0" />
+      <group targetFramework=".NETStandard1.3" />
+      <group targetFramework=".NETPortable0.0-Profile328" />
+      <group targetFramework=".NETPortable0.0-Profile259" />
+    </dependencies>
+  </metadata>
+</package>

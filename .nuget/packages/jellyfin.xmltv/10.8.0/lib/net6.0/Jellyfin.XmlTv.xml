@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jellyfin.XmlTv</name>
+    </assembly>
+    <members>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvChannel.Equals(Jellyfin.XmlTv.Entities.XmlTvChannel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvChannel.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvChannel.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvChannel.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvCredit.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvEpisode.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvIcon.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.XmlTv.Entities.XmlTvLanguage">
+            <summary>
+            Class XmlTvLanguage.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvLanguage.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.XmlTv.Entities.XmlTvLanguage"/> class.
+            </summary>
+            <param name="name">The language name.</param>
+            <param name="relevance">The relevance (number of occurrences) of the language.</param>
+        </member>
+        <member name="P:Jellyfin.XmlTv.Entities.XmlTvLanguage.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:Jellyfin.XmlTv.Entities.XmlTvLanguage.Relevance">
+            <summary>
+            Gets the relevance (number of occurrences) of the language, can be used to order (desc).
+            </summary>
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvProgram.Equals(Jellyfin.XmlTv.Entities.XmlTvProgram)">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvProgram.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvProgram.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvProgram.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Jellyfin.XmlTv.Entities.XmlTvRating">
+            <summary>
+            Describes the rating (certification) applied to a program.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvRating.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.XmlTv.Entities.XmlTvRating"/> class.
+            </summary>
+            <param name="value">The rating.</param>
+        </member>
+        <member name="P:Jellyfin.XmlTv.Entities.XmlTvRating.System">
+            <summary>
+            Gets or sets the literal name of the rating system.
+            </summary>
+            Example: MPAA
+        </member>
+        <member name="P:Jellyfin.XmlTv.Entities.XmlTvRating.Value">
+            <summary>
+            Gets the rating using the system specificed.
+            </summary>
+        </member>
+        <member name="M:Jellyfin.XmlTv.Entities.XmlTvRating.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Jellyfin.XmlTv.XmlTvReader.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Jellyfin.XmlTv.XmlTvReader" /> class.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <param name="language">The specific language to return.</param>
+        </member>
+        <member name="M:Jellyfin.XmlTv.XmlTvReader.GetChannels">
+            <summary>
+            Gets the list of channels present in the XML.
+            </summary>
+            <returns>The list of channels present in the XML.</returns>
+        </member>
+        <member name="M:Jellyfin.XmlTv.XmlTvReader.GetProgrammes(System.String,System.DateTimeOffset,System.DateTimeOffset,System.Threading.CancellationToken)">
+            <summary>
+            Gets the programmes for a specified channel.
+            </summary>
+            <param name="channelId">The channel id.</param>
+            <param name="startDateUtc">The UTC start date.</param>
+            <param name="endDateUtc">The UTC end date.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>The programmes for a specified channel.</returns>
+        </member>
+        <member name="M:Jellyfin.XmlTv.XmlTvReader.GetLanguages(System.Threading.CancellationToken)">
+            <summary>
+            Gets the list of supported languages in the XML.
+            </summary>
+            <param name="cancellationToken">A cancellation token that may be used to cancel the operation.</param>
+            <returns>The list of supported languages in the XML.</returns>
+        </member>
+    </members>
+</doc>

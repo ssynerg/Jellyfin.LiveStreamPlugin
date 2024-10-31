@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>AsyncKeyedLock</id>
+    <version>6.4.2</version>
+    <authors>Mark Cilia Vincenti</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>logo.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/MarkCiliaVincenti/AsyncKeyedLock</projectUrl>
+    <description>An asynchronous .NET Standard 2.0 library that allows you to lock based on a key (keyed semaphores), limiting concurrent threads sharing the same key to a specified number, with optional pooling for reducing memory allocations.</description>
+    <releaseNotes>Exposing constructor for AsyncKeyedLockTimeoutReleaser.</releaseNotes>
+    <copyright>© 2024 Mark Cilia Vincenti</copyright>
+    <tags>async,lock,key,keyed,semaphore,striped,dictionary,concurrentdictionary,pooling,duplicate,synchronization</tags>
+    <repository type="git" url="https://github.com/MarkCiliaVincenti/AsyncKeyedLock.git" commit="a2a06e198e6e54d0bc78c2ef343476e4c4912d7c" />
+    <dependencies>
+      <group targetFramework="net5.0" />
+      <group targetFramework="net8.0" />
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="System.Threading.Tasks.Extensions" version="4.5.4" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1" />
+    </dependencies>
+  </metadata>
+</package>

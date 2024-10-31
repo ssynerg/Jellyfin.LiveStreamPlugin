@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>PlaylistsNET</id>
+    <version>1.4.1</version>
+    <authors>Tomasz Walecki</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/tmk907/PlaylistsNET</projectUrl>
+    <description>Simple library for reading and writing playlist's files. Supported formats: m3u, pls, wpl, zpl.</description>
+    <releaseNotes>Add encoding parameter to IPlaylistParser.GetFromStream</releaseNotes>
+    <tags>playlists m3u pls wpl zpl m3u8 playlist</tags>
+    <repository type="git" url="https://github.com/tmk907/PlaylistsNET" commit="10a2a55e5b5146362de8dfe68651cb00a61cad87" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.8" />
+      <group targetFramework=".NETStandard1.4">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net6.0" />
+      <group targetFramework="net8.0" />
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+</package>

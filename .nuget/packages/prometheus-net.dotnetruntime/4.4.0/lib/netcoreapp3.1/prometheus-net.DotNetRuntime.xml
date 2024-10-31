@@ -1,0 +1,509 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>prometheus-net.DotNetRuntime</name>
+    </assembly>
+    <members>
+        <member name="T:Prometheus.DotNetRuntime.CaptureLevel">
+            <summary>
+            Specifies the fidelity of events captured.
+            </summary>
+            <remarks>
+            In order to produce metrics this library collects events from the .NET runtime. The level chosen impacts both the performance of
+            your application (the more detailed events .NET produces the more CPU it consumes to produce them) and the level of detail present in the metrics
+            produced by this library (the more detailed events prometheus-net.DotNetRuntime captures, the more analysis it can perform). 
+            </remarks>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.CaptureLevel.Counters">
+            <summary>
+            Collect event counters only- limited metrics will be available.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.CaptureLevel.Verbose">
+            <summary>
+            Collects events at level Verbose and all other levels- produces the highest level of metric detail.
+            </summary>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder">
+            <summary>
+            Configures what .NET core runtime metrics will be collected. 
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Default">
+            <summary>
+            Includes all .NET runtime metrics that can be collected at the <see cref="F:Prometheus.DotNetRuntime.CaptureLevel.Counters"/> capture level,
+            ensuring minimal impact on performance. Call <see cref="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.StartCollecting"/> to begin collecting metrics.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Customize">
+            <summary>
+            Allows you to customize the types of metrics collected. 
+            </summary>
+            <returns></returns>
+            <remarks>
+            Include specific .NET runtime metrics by calling the WithXXX() methods and then call <see cref="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.StartCollecting"/>
+            </remarks>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.StartCollecting">
+            <summary>
+            Finishes configuration and starts collecting .NET runtime metrics. Returns a <see cref="T:System.IDisposable"/> that
+            can be disposed of to stop metric collection. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.StartCollecting(Prometheus.CollectorRegistry)">
+            <summary>
+            Finishes configuration and starts collecting .NET runtime metrics. Returns a <see cref="T:System.IDisposable"/> that
+            can be disposed of to stop metric collection. 
+            </summary>
+            <param name="registry">Registry where metrics will be collected</param>
+            <returns></returns>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.WithThreadPoolStats(Prometheus.DotNetRuntime.CaptureLevel,Prometheus.DotNetRuntime.Metrics.Producers.ThreadPoolMetricsProducer.Options)">
+            <summary>
+            Include metrics around the size of the worker and IO thread pools and reasons
+            for worker thread pool changes.
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.WithContentionStats(Prometheus.DotNetRuntime.CaptureLevel,Prometheus.DotNetRuntime.SampleEvery)">
+            <summary>
+            Include metrics around volume of locks contended.
+            </summary>
+            <param name="level"></param>
+            <param name="sampleRate">
+            The sampling rate for contention events (defaults to 100%). A lower sampling rate reduces memory use
+            but reduces the accuracy of metrics produced (as a percentage of events are discarded).
+            </param>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.WithJitStats(Prometheus.DotNetRuntime.CaptureLevel,Prometheus.DotNetRuntime.SampleEvery)">
+            <summary>
+            Include metrics summarizing the volume of methods being compiled
+            by the Just-In-Time compiler.
+            </summary>
+            <param name="captureLevel"></param>
+            <param name="sampleRate">
+            The sampling rate for JIT events. A lower sampling rate reduces memory use
+            but reduces the accuracy of metrics produced (as a percentage of events are discarded).
+            If your application achieves a high level of throughput (thousands of work items scheduled per second on
+            the thread pool), it's recommend to reduce the sampling rate even further.
+            </param>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.WithGcStats(Prometheus.DotNetRuntime.CaptureLevel,System.Double[])">
+            <summary>
+            Include metrics recording the frequency and duration of garbage collections/ pauses, heap sizes and
+            volume of allocations.
+            </summary>
+            <param name="atLevel"></param>
+            <param name="histogramBuckets">Buckets for the GC collection and pause histograms</param>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.WithSocketStats">
+            <summary>
+            Include metrics around established TCP connections and the volume of bytes sent/ received over the network.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.WithExceptionStats(Prometheus.DotNetRuntime.CaptureLevel)">
+            <summary>
+            Include metrics that measure the number of exceptions thrown.
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.WithErrorHandler(System.Action{System.Exception})">
+            <summary>
+            Specifies a function to call when an exception occurs within the .NET stats collectors.
+            Only one error handler may be specified.
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.DotNetRuntimeStatsBuilder.Builder.WithDebuggingMetrics(System.Boolean)">
+            <summary>
+            Include additional debugging metrics. Should NOT be used in production unless debugging
+            perf issues.
+            </summary>
+            <remarks>
+            Enabling debugging will emit two metrics:
+            1. dotnet_debug_events_total - tracks the volume of events being processed by each stats collectorC
+            2. dotnet_debug_cpu_seconds_total - tracks (roughly) the amount of CPU consumed by each stats collector.  
+            </remarks>
+            <param name="generateDebugMetrics"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.Consumes`1">
+            <summary>
+            Used to communicate that a <see cref="T:Prometheus.DotNetRuntime.Metrics.IMetricProducer"/> depends on the events generated by an <see cref="T:Prometheus.DotNetRuntime.EventListening.IEventParser`1"/> or <see cref="T:Prometheus.DotNetRuntime.EventListening.IEventCounterParser`1"/>.
+            </summary>
+            <typeparam name="TEvents"></typeparam>
+        </member>
+        <member name="P:Prometheus.DotNetRuntime.Consumes`1.Enabled">
+            <summary>
+            Indicates if the events of <typeparamref name="TEvents"/> will be produced and can be listened to.
+            </summary>
+            <remarks>
+            As event parsers may or may not be enabled (or enabled at lower event levels), we need a mechanism to indicate if
+            events are available or not to generate metrics from.
+            </remarks>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.EventListening.EventCounterParserBase`1">
+            <summary>
+            A reflection-based event parser that can extract typed counter values for a given event counter source.
+            </summary>
+            <remarks>
+            While using reflection isn't ideal from a performance standpoint, this is fine for now- event counters are collected at most
+            every second so won't have to deal with high throughput of events.
+            </remarks>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.EventListening.IEventCounterListener">
+            <summary>
+            An <see cref="T:Prometheus.DotNetRuntime.EventListening.IEventListener"/> that listens for event counters.
+            </summary>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.EventListening.IEventCounterParser`1">
+            <summary>
+            An <see cref="T:Prometheus.DotNetRuntime.EventListening.IEventParser`1"/> that turns untyped counter values into strongly-typed counter events.
+            </summary>
+            <typeparam name="TCounters"></typeparam>
+        </member>
+        <member name="P:Prometheus.DotNetRuntime.EventListening.IEventListener.EventSourceName">
+            <summary>
+            The name of the event source to receive events from.
+            </summary>
+        </member>
+        <member name="P:Prometheus.DotNetRuntime.EventListening.IEventListener.Keywords">
+            <summary>
+            The keywords to enable in the event source.
+            </summary>
+            <remarks>
+            Keywords act as a "if-any-match" filter- specify multiple keywords to obtain multiple categories of events
+            from the event source.
+            </remarks>
+        </member>
+        <member name="P:Prometheus.DotNetRuntime.EventListening.IEventListener.SupportedLevels">
+            <summary>
+            The levels of events supported.
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.EventListening.IEventListener.ProcessEvent(System.Diagnostics.Tracing.EventWrittenEventArgs)">
+            <summary>
+            Process a received event.
+            </summary>
+            <remarks>
+            Implementors should listen to events and perform some kind of processing.
+            </remarks>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.EventListening.IEventParser`1">
+            <summary>
+            A <see cref="T:Prometheus.DotNetRuntime.EventListening.IEventListener"/> that receives "untyped" events of <see cref="T:System.Diagnostics.Tracing.EventWrittenEventArgs"/> into strongly-typed events.
+            </summary>
+            <typeparam name="TEvents">
+            Represents the set of strongly-typed events emitted by this parser. Implementors should not directly implement <see cref="T:Prometheus.DotNetRuntime.EventListening.IEvents"/>, rather
+            implement inheriting interfaces such as <see cref="T:Prometheus.DotNetRuntime.EventListening.IInfoEvents"/>, <see cref="T:Prometheus.DotNetRuntime.EventListening.IWarningEvents"/>, etc. 
+            </typeparam>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.EventListening.Parsers.Util.Cache`2">
+            <summary>
+            A strongly-typed cache that periodically evicts items.
+            </summary>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.EventListening.Parsers.Util.EventPairTimer`2">
+            <summary>
+            To generate metrics, we are often interested in the duration between two events. This class
+            helps time the duration between two events.
+            </summary>
+            <typeparam name="TId">A type of an identifier present on both events</typeparam>
+            <typeparam name="TEventData">A struct that represents data of interest extracted from the first event</typeparam>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.EventListening.Parsers.Util.EventPairTimer`2.TryGetDuration(System.Diagnostics.Tracing.EventWrittenEventArgs,System.TimeSpan@,`1@)">
+            <summary>
+            Checks if an event is an expected final event- if so, returns true, the duration between it and the start event and
+            any data extracted from the first event.
+            </summary>
+            <remarks>
+            If the event id matches the supplied start event id, then we cache the event until the final event occurs.
+            All other events are ignored.
+            </remarks>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.EventListening.Parsers.Util.SamplingRate">
+            <summary>
+            The rate at which high-frequency events are sampled
+            </summary>
+            <remarks>
+            In busy .NET applications, certain events are emitted at the rate of thousands/ tens of thousands per second.
+            To track all the start and end pairs of events for these events can consume a significant amount of memory (100+ MB).
+            Using a sampling rate allows us to reduce the memory requirements. 
+            </remarks>
+        </member>
+        <member name="P:Prometheus.DotNetRuntime.EventListening.Parsers.Util.SamplingRate.SampleEvery">
+            <summary>
+            Out of every 100 events, how many events we should observe.
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.EventListening.Parsers.Util.SamplingRate.ShouldSampleEvent">
+            <summary>
+            Determines if we should sample a given event.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource">
+            <summary>
+            Provider name: Microsoft-Windows-DotNETRuntime. Provides events generated by the .NET runtime (unmanaged code).
+            </summary>
+            <remarks>
+            Most of the enums defined are taken from the Microsoft.Diagnostics.Tracing package.
+            </remarks>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.GC">
+            <summary>
+            Logging when garbage collections and finalization happen.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.GCHandle">
+            <summary>Events when GC handles are set or destroyed.</summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Loader">
+            <summary>
+            Logging when modules actually get loaded and unloaded.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Jit">
+            <summary>Logging when Just in time (JIT) compilation occurs.</summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.NGen">
+            <summary>
+            Logging when precompiled native (NGEN) images are loaded.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.StartEnumeration">
+            <summary>
+            Indicates that on attach or module load , a rundown of all existing methods should be done
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.StopEnumeration">
+            <summary>
+            Indicates that on detach or process shutdown, a rundown of all existing methods should be done
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Security">
+            <summary>
+            Events associated with validating security restrictions.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.AppDomainResourceManagement">
+            <summary>
+            Events for logging resource consumption on an app-domain level granularity
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.JitTracing">
+            <summary>
+            Logging of the internal workings of the Just In Time compiler.  This is fairly verbose.
+            It details decisions about interesting optimization (like inlining and tail call)
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Interop">
+            <summary>
+            Log information about code thunks that transition between managed and unmanaged code.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Contention">
+            <summary>
+            Log when lock contention occurs.  (Monitor.Enters actually blocks)
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Exception">
+            <summary>Log exception processing.</summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Threading">
+            <summary>
+            Log events associated with the threadpool, and other threading events.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.JittedMethodILToNativeMap">
+            <summary>
+            Dump the native to IL mapping of any method that is JIT compiled.  (V4.5 runtimes and above).
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.OverrideAndSuppressNGenEvents">
+            <summary>
+            If enabled will suppress the rundown of NGEN events on V4.0 runtime (has no effect on Pre-V4.0 runtimes).
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Type">
+            <summary>Enables the 'BulkType' event</summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.GCHeapDump">
+            <summary>
+            Enables the events associated with dumping the GC heap
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.GCSampledObjectAllocationHigh">
+            <summary>
+            Enables allocation sampling with the 'fast'.  Sample to limit to 100 allocations per second per type.
+            This is good for most detailed performance investigations.   Note that this DOES update the allocation
+            path to be slower and only works if the process start with this on.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.GCHeapSurvivalAndMovement">
+            <summary>
+            Enables events associate with object movement or survival with each GC.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.GCHeapCollect">
+            <summary>
+            Triggers a GC.  Can pass a 64 bit value that will be logged with the GC Start event so you know which GC you actually triggered.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.GCHeapAndTypeNames">
+            <summary>
+            Indicates that you want type names looked up and put into the events (not just meta-data tokens).
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.GCSampledObjectAllocationLow">
+            <summary>
+            Enables allocation sampling with the 'slow' rate, Sample to limit to 5 allocations per second per type.
+            This is reasonable for monitoring.    Note that this DOES update the allocation path to be slower
+            and only works if the process start with this on.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.GCAllObjectAllocation">
+            <summary>
+            Turns on capturing the stack and type of object allocation made by the .NET Runtime.   This is only
+            supported after V4.5.3 (Late 2014)   This can be very verbose and you should seriously using  GCSampledObjectAllocationHigh
+            instead (and GCSampledObjectAllocationLow for production scenarios).
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.SupressNGen">
+            <summary>
+            This suppresses NGEN events on V4.0 (where you have NGEN PDBs), but not on V2.0 (which does not know about this
+            bit and also does not have NGEN PDBS).
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.PerfTrack">
+            <summary>TODO document</summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Stack">
+            <summary>
+            Also log the stack trace of events for which this is valuable.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.ThreadTransfer">
+            <summary>
+            This allows tracing work item transfer events (thread pool enqueue/dequeue/ioenqueue/iodequeue/a.o.)
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Debugger">
+            <summary>.NET Debugger events</summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Monitoring">
+            <summary>Events intended for monitoring on an ongoing basis.</summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Codesymbols">
+            <summary>
+            Events that will dump PDBs of dynamically generated assemblies to the ETW stream.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.Default">
+            <summary>
+            Recommend default flags (good compromise on verbosity).
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.JITSymbols">
+            <summary>
+            What is needed to get symbols for JIT compiled code.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.EventListening.EventSources.DotNetRuntimeEventSource.Keywords.GCHeapSnapshot">
+            <summary>
+            This provides the flags commonly needed to take a heap .NET Heap snapshot with ETW.
+            </summary>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.EventListening.EventSources.FrameworkEventSource">
+            <summary>
+            Provider name: System.Diagnostics.Eventing.FrameworkEventSource. Provides events generated by
+            the CoreClr libraries. 
+            </summary>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.EventListening.EventSources.SystemRuntimeEventSource">
+            <summary>
+            Provider name: System.Runtime. Provides counters generated by the .NET runtime.
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.Metrics.IMetricProducer.RegisterMetrics(Prometheus.MetricFactory)">
+            <summary>
+            Called when the producer is associated with a metrics registry, allowing metrics to be created via the passed <see cref="T:Prometheus.MetricFactory"/>.
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.Metrics.IMetricProducer.UpdateMetrics">
+            <summary>
+            Called before each metrics collection. Any metrics managed by this producer should now be brought up to date.
+            </summary>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.Metrics.MetricExtensions">
+            <summary>
+            Provides helper functions for accessing values of metrics.
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.Metrics.MetricExtensions.CollectAllValues(Prometheus.Counter,System.Boolean)">
+            <summary>
+            Collects all values of a counter recorded across both unlabeled and labeled metrics.
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.Metrics.MetricExtensions.CollectAllSumValues(Prometheus.Histogram,System.Boolean)">
+            <summary>
+            Collects all sum values of a histogram recorded across both unlabeled and labeled metrics.
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.Metrics.MetricExtensions.CollectAllCountValues(Prometheus.Histogram)">
+            <summary>
+            Collects all count values of a histogram recorded across both unlabeled and labeled metrics.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.Metrics.Producers.Util.Constants.DefaultHistogramBuckets">
+            <summary>
+            In seconds, the buckets to use when generating histogram.
+            </summary>
+            <remarks>
+            Default is: 1ms, 10ms, 50ms, 100ms, 500ms, 1 sec, 10 sec
+            </remarks>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.Metrics.Producers.Util.LabelGenerator">
+            <summary>
+            Generating tags often involves heavy use of String.Format, which takes CPU time and needlessly re-allocates 
+            strings. Pre-generating these labels helps keep resource use to a minimum.
+            </summary>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.Metrics.Producers.Util.Ratio">
+            <summary>
+            Helps calculate the ratio of process resources consumed by some activity.
+            </summary>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.Metrics.Producers.Util.Ratio.ProcessTotalCpu">
+            <summary>
+            Calculates the ratio of CPU time consumed by an activity. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Prometheus.DotNetRuntime.Metrics.Producers.Util.Ratio.ProcessTime">
+            <summary>
+            Calculates the ratio of process time consumed by an activity.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Prometheus.DotNetRuntime.SampleEvery">
+            <summary>
+            Determines the level of sampling stats collectors will perform. <see cref="F:Prometheus.DotNetRuntime.SampleEvery.OneEvent"/> offers the highest level
+            of accuracy while <see cref="F:Prometheus.DotNetRuntime.SampleEvery.HundredEvents"/> offers the lowest level of precision but least amount of overhead.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.SampleEvery.OneEvent">
+            <summary>
+            The highest level of accuracy- every event will be sampled.
+            </summary>
+        </member>
+        <member name="F:Prometheus.DotNetRuntime.SampleEvery.HundredEvents">
+            <summary>
+            The lowest level of precision- only 1 in 100 events will be sampled.
+            </summary>
+        </member>
+    </members>
+</doc>

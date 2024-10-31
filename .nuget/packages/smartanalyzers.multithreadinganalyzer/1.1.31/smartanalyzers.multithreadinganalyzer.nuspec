@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SmartAnalyzers.MultithreadingAnalyzer</id>
+    <version>1.1.31</version>
+    <authors>Cezary Piatek</authors>
+    <owners>Cezary Piatek</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/smartanalyzers/MultithreadingAnalyzer/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/smartanalyzers/MultithreadingAnalyzer</projectUrl>
+    <iconUrl>https://github.com/smartanalyzers/MultithreadingAnalyzer/raw/master/doc/logo.jpg</iconUrl>
+    <description>A set of Roslyn analyzers related to multithreading</description>
+    <copyright>Copyright</copyright>
+    <tags>SmartAnalyzers.MultithreadingAnalyzer, analyzers, multithreading</tags>
+    <repository url="https://github.com/smartanalyzers/MultithreadingAnalyzer" />
+    <dependencies>
+      <group targetFramework=".NETStandard1.3" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>DiscUtils.Core</id>
+    <version>0.16.13</version>
+    <authors>Kenneth Bell,Quamotion,LordMike</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://github.com/DiscUtils/DiscUtils</projectUrl>
+    <description>Implementation of the ISO, UDF, FAT and NTFS file systems is now fairly stable. VHD, XVA, VMDK and VDI disk formats are implemented, as well as read/write Registry support. The library also includes a simple iSCSI initiator, for accessing disks via iSCSI and an NFS client implementation.</description>
+    <tags>DiscUtils VHD VDI XVA VMDK ISO NTFS EXT2FS</tags>
+    <repository type="git" url="https://github.com/DiscUtils/DiscUtils" commit="59d7cadab839c6d8dfcf52f8be5efe6d2ced190f" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="DiscUtils.Streams" version="0.16.13" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="DiscUtils.Streams" version="0.16.13" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net5.0">
+        <dependency id="DiscUtils.Streams" version="0.16.13" exclude="Build,Analyzers" />
+        <dependency id="System.Security.AccessControl" version="5.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="DiscUtils.Streams" version="0.16.13" exclude="Build,Analyzers" />
+        <dependency id="System.Security.AccessControl" version="5.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Encoding.CodePages" version="5.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

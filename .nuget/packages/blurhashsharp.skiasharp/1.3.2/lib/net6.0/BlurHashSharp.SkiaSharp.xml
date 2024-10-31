@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BlurHashSharp.SkiaSharp</name>
+    </assembly>
+    <members>
+        <member name="T:BlurHashSharp.SkiaSharp.BlurHashEncoder">
+            <summary>
+            The BlurHash encoder for use with the SkiaSharp image library.
+            </summary>
+        </member>
+        <member name="M:BlurHashSharp.SkiaSharp.BlurHashEncoder.Encode(System.Int32,System.Int32,System.IO.Stream)">
+            <summary>
+            Encodes the BlurHash representation of the image.
+            </summary>
+            <param name="xComponent">The number x components.</param>
+            <param name="yComponent">The number y components.</param>
+            <param name="stream">The IO stream of an encoded image.</param>
+            <returns>BlurHash representation of the image.</returns>
+        </member>
+        <member name="M:BlurHashSharp.SkiaSharp.BlurHashEncoder.Encode(System.Int32,System.Int32,System.String)">
+            <summary>
+            Encodes the BlurHash representation of the image.
+            </summary>
+            <param name="xComponent">The number x components.</param>
+            <param name="yComponent">The number y components.</param>
+            <param name="filename">The path to an encoded image on the file system.</param>
+            <returns>BlurHash representation of the image.</returns>
+        </member>
+        <member name="M:BlurHashSharp.SkiaSharp.BlurHashEncoder.Encode(System.Int32,System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Resizes the image and encodes the BlurHash representation of the image.
+            </summary>
+            <param name="xComponent">The number x components.</param>
+            <param name="yComponent">The number y components.</param>
+            <param name="filename">The path to an encoded image on the file system.</param>
+            <param name="maxWidth">The maximum width to resize the image to.</param>
+            <param name="maxHeight">The maximum height to resize the image to.</param>
+            <returns>BlurHash representation of the image.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>SonarAnalyzer.CSharp</id>
+    <version>8.22.0.31243</version>
+    <title>SonarAnalyzer for C#</title>
+    <authors>SonarSource</authors>
+    <owners>SonarSource</owners>
+    <developmentDependency>true</developmentDependency>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">LGPL-3.0-only</license>
+    <licenseUrl>https://licenses.nuget.org/LGPL-3.0-only</licenseUrl>
+    <icon>images\sonarsource_64.png</icon>
+    <projectUrl>https://www.sonarlint.org/visualstudio/</projectUrl>
+    <description>Roslyn analyzers that spot Bugs, Vulnerabilities and Code Smells in your code. For an even better overall experience, you can use SonarLint for Visual Studio, which is a free extension (https://www.sonarlint.org/visualstudio/) that can be used standalone or with SonarQube (https://www.sonarqube.org/) and/or SonarCloud (https://sonarcloud.io/).</description>
+    <summary>Roslyn analyzers that spot Bugs, Vulnerabilities and Code Smells in your code. For an even better overall experience, you can use SonarLint for Visual Studio, which is a free extension that can be used standalone or with SonarQube and/or SonarCloud.</summary>
+    <releaseNotes>https://github.com/SonarSource/sonar-dotnet/releases/tag/8.22.0.31243</releaseNotes>
+    <copyright>Copyright © 2015-2021 SonarSource SA</copyright>
+    <language>en-US</language>
+    <tags>Roslyn Analyzers Refactoring CodeAnalysis</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>libse</id>
+    <version>4.0.5</version>
+    <authors>Nikolaj Olsson</authors>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <icon>Icon.png</icon>
+    <projectUrl>https://github.com/SubtitleEdit/subtitleedit/tree/main/src/libse</projectUrl>
+    <description>Package Description</description>
+    <releaseNotes>SE 4.0.5</releaseNotes>
+    <tags>subtitle subtitles subrip srt blu-ray sup</tags>
+    <repository type="git" url="https://github.com/SubtitleEdit/subtitleedit/tree/main/src/libse" commit="8508cf7038838d71c95eb74781ca7202e852b6a6" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.8">
+        <dependency id="Microsoft.Win32.Registry" version="5.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Drawing.Common" version="7.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http" version="4.3.4" exclude="Build,Analyzers" />
+        <dependency id="UTF.Unknown" version="2.5.1" exclude="Build,Analyzers" />
+        <dependency id="zlib.net-mutliplatform" version="1.0.6" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="Microsoft.Win32.Registry" version="5.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Drawing.Common" version="7.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http" version="4.3.4" exclude="Build,Analyzers" />
+        <dependency id="UTF.Unknown" version="2.5.1" exclude="Build,Analyzers" />
+        <dependency id="zlib.net-mutliplatform" version="1.0.6" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.IO" targetFramework=".NETFramework4.8" />
+      <frameworkAssembly assemblyName="System.Net.Http" targetFramework=".NETFramework4.8" />
+      <frameworkAssembly assemblyName="System.Runtime" targetFramework=".NETFramework4.8" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.Algorithms" targetFramework=".NETFramework4.8" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.Encoding" targetFramework=".NETFramework4.8" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.Primitives" targetFramework=".NETFramework4.8" />
+      <frameworkAssembly assemblyName="System.Security.Cryptography.X509Certificates" targetFramework=".NETFramework4.8" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>LrcParser</id>
+    <version>2023.524.0</version>
+    <authors>andy840119</authors>
+    <licenseUrl>https://github.com/karaoke-dev/LrcParser</licenseUrl>
+    <projectUrl>https://github.com/karaoke-dev/LrcParser</projectUrl>
+    <description>Parser for encode and decode the .lrc format file</description>
+    <releaseNotes>喵</releaseNotes>
+    <copyright>https://github.com/karaoke-dev/LrcParser</copyright>
+    <tags>lrc karaoke andy840119</tags>
+    <repository type="Git" url="https://github.com/karaoke-dev/LrcParser.git" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.1" />
+    </dependencies>
+  </metadata>
+</package>

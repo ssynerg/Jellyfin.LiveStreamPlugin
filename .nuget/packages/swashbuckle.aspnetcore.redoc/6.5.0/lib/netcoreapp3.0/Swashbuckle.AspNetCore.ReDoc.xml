@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Swashbuckle.AspNetCore.ReDoc</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocBuilderExtensions.UseReDoc(Microsoft.AspNetCore.Builder.IApplicationBuilder,Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Register the ReDoc middleware with provided options
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocBuilderExtensions.UseReDoc(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{Swashbuckle.AspNetCore.ReDoc.ReDocOptions})">
+            <summary>
+            Register the ReDoc middleware with optional setup action for DI-injected options
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.InjectStylesheet(Swashbuckle.AspNetCore.ReDoc.ReDocOptions,System.String,System.String)">
+            <summary>
+            Injects additional CSS stylesheets into the index.html page
+            </summary>
+            <param name="options"></param>
+            <param name="path">A path to the stylesheet - i.e. the link "href" attribute</param>
+            <param name="media">The target media - i.e. the link "media" attribute</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.SpecUrl(Swashbuckle.AspNetCore.ReDoc.ReDocOptions,System.String)">
+            <summary>
+            Sets the Swagger JSON endpoint. Can be fully-qualified or relative to the redoc page
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.EnableUntrustedSpec(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            If enabled, the spec is considered untrusted and all HTML/markdown is sanitized to prevent XSS.
+            Disabled by default for performance reasons. Enable this option if you work with untrusted user data!
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.ScrollYOffset(Swashbuckle.AspNetCore.ReDoc.ReDocOptions,System.Int32)">
+            <summary>
+            Specifies a vertical scroll-offset in pixels.
+            This is often useful when there are fixed positioned elements at the top of the page, such as navbars, headers etc
+            </summary>
+            <param name="options"></param>
+            <param name="offset"></param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.HideHostname(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Controls if the protocol and hostname is shown in the operation definition
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.HideDownloadButton(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Do not show "Download" spec button. THIS DOESN'T MAKE YOUR SPEC PRIVATE, it just hides the button
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.ExpandResponses(Swashbuckle.AspNetCore.ReDoc.ReDocOptions,System.String)">
+            <summary>
+            Specify which responses to expand by default by response codes.
+            Values should be passed as comma-separated list without spaces e.g. "200,201". Special value "all" expands all responses by default.
+            Be careful: this option can slow-down documentation rendering time.
+            Default is "all"
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.RequiredPropsFirst(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Show required properties first ordered in the same order as in required array
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.NoAutoAuth(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Do not inject Authentication section automatically
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.PathInMiddlePanel(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Show path link and HTTP verb in the middle panel instead of the right one
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.HideLoading(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Do not show loading animation. Useful for small docs
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.NativeScrollbars(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Use native scrollbar for sidemenu instead of perfect-scroll (scrolling performance optimization for big specs)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.DisableSearch(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Disable search indexing and search box
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.OnlyRequiredInSamples(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Show only required fields in request samples
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ReDocOptionsExtensions.SortPropsAlphabetically(Swashbuckle.AspNetCore.ReDoc.ReDocOptions)">
+            <summary>
+            Sort properties alphabetically
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ReDocOptions.RoutePrefix">
+            <summary>
+            Gets or sets a route prefix for accessing the redoc page
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ReDocOptions.IndexStream">
+            <summary>
+            Gets or sets a Stream function for retrieving the redoc page
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ReDocOptions.DocumentTitle">
+            <summary>
+            Gets or sets a title for the redoc page
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ReDocOptions.HeadContent">
+            <summary>
+            Gets or sets additional content to place in the head of the redoc page
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ReDocOptions.SpecUrl">
+            <summary>
+            Gets or sets the Swagger JSON endpoint. Can be fully-qualified or relative to the redoc page
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.UntrustedSpec">
+            <summary>
+            If set, the spec is considered untrusted and all HTML/markdown is sanitized to prevent XSS.
+            Disabled by default for performance reasons. Enable this option if you work with untrusted user data!
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.ScrollYOffset">
+            <summary>
+            If set, specifies a vertical scroll-offset in pixels.
+            This is often useful when there are fixed positioned elements at the top of the page, such as navbars, headers etc
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.HideHostname">
+            <summary>
+            If set, the protocol and hostname is not shown in the operation definition
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.HideDownloadButton">
+            <summary>
+            Do not show "Download" spec button. THIS DOESN'T MAKE YOUR SPEC PRIVATE, it just hides the button
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.ExpandResponses">
+            <summary>
+            Specify which responses to expand by default by response codes.
+            Values should be passed as comma-separated list without spaces e.g. "200,201". Special value "all" expands all responses by default.
+            Be careful: this option can slow-down documentation rendering time.
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.RequiredPropsFirst">
+            <summary>
+            Show required properties first ordered in the same order as in required array
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.NoAutoAuth">
+            <summary>
+            Do not inject Authentication section automatically
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.PathInMiddlePanel">
+            <summary>
+            Show path link and HTTP verb in the middle panel instead of the right one
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.HideLoading">
+            <summary>
+            Do not show loading animation. Useful for small docs
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.NativeScrollbars">
+            <summary>
+            Use native scrollbar for sidemenu instead of perfect-scroll (scrolling performance optimization for big specs)
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.DisableSearch">
+            <summary>
+            Disable search indexing and search box
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.OnlyRequiredInSamples">
+            <summary>
+            Show only required fields in request samples
+            </summary>
+        </member>
+        <member name="P:Swashbuckle.AspNetCore.ReDoc.ConfigObject.SortPropsAlphabetically">
+            <summary>
+            Sort properties alphabetically
+            </summary>
+        </member>
+    </members>
+</doc>

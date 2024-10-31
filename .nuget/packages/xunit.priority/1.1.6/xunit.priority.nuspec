@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Xunit.Priority</id>
+    <version>1.1.6</version>
+    <authors>Aaron Sherber</authors>
+    <owners>Aaron Sherber</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/asherber/Xunit.Priority/master/media/xunit-priority-64.png</iconUrl>
+    <description>Provides an ITestCaseOrderer that allows you to control the order of execution of Xunit tests within a class.</description>
+    <releaseNotes>Added DefaultPrority attribute and netstandard2.0 build</releaseNotes>
+    <copyright>2018-2019</copyright>
+    <tags>xunit priority order</tags>
+    <repository type="git" url="https://github.com/asherber/Xunit.Priority" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.5.2">
+        <dependency id="xunit.extensibility.core" version="2.3.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard1.1">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+        <dependency id="xunit.extensibility.core" version="2.3.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="xunit.extensibility.core" version="2.3.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

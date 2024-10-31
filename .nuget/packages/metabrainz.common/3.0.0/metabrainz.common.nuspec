@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>MetaBrainz.Common</id>
+    <version>3.0.0+github.37.1</version>
+    <title>Common Utilities</title>
+    <authors>Zastai</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>package-icon.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Zastai/MetaBrainz.Common/blob/main/README.md</projectUrl>
+    <description>This package provides general utility classes used by other MetaBrainz packages.</description>
+    <copyright>Copyright © 2022, 2023 Tim Van Holder. All rights reserved.</copyright>
+    <tags>MetaBrainz</tags>
+    <repository type="Github" url="https://github.com/Zastai/MetaBrainz.Common" commit="86305112b7f636e89263d28dc13c6703f02cbdeb" />
+    <dependencies>
+      <group targetFramework="net6.0" />
+      <group targetFramework="net8.0" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>MediaBrowser.Common</id>
+    <version>4.9.0.14-beta</version>
+    <title>Emby.Common</title>
+    <authors>Emby Team</authors>
+    <owners>ebr,Luke</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/MediaBrowser/Emby</projectUrl>
+    <iconUrl>http://www.mb3admin.com/images/mb3icons1-1.png</iconUrl>
+    <description>Contains common model objects and interfaces used by all Emby solutions.</description>
+    <copyright>Copyright © Emby 2023</copyright>
+  </metadata>
+</package>
