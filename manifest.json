@@ -4,6 +4,6 @@
     "Description": "A plugin to add live streaming capabilities.",
     "Id": "com.synergytechnologies.livestream",
     "Version": "1.0.0",
-    "Url": "https://github.com/ssynerg/Jellyfin.LiveStreamPlugin/com.synergytechnologies.livestream.zip", // Or direct ZIP URL if not using releases
+    "Url": "https://github.com/ssynerg/Jellyfin.LiveStreamPlugin/blob/main/com.synergytechnologies.livestream.zip"
   }
 ]
